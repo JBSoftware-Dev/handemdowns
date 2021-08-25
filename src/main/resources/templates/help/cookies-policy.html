@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Cookies Policy')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="help/fragments/header :: header('policies')"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container main-container">
+    <div class="row">
+        <div data-th-replace="help/fragments/policies-menu :: policies-menu('Cookies Policy')"></div>
+        <div class="col-lg-9">
+            <h1 class="title">Cookies Policy</h1>
+        </div>
+        <div class="col-lg-9">
+            <p>This website uses cookies.  By using this website and agreeing to this policy, you consent to Handemdowns use of cookies in accordance with the
+                terms of this policy.
+            </p>
+            <p>Cookies are files sent by web servers to web browsers, and stored by the web browsers.  The information is then sent back to the server each time
+                the browser requests a page from the server.  This enables a web server to identify and track web browsers.
+            </p>
+            <p>There are two main kinds of cookies: session cookies and persistent cookies.  Session cookies are deleted from your computer when you close your
+                browser, whereas persistent cookies remain stored on your computer until deleted, or until they reach their expiry date.
+            </p>
+            <br />
+            <h4>Cookies on our website</h4>
+            <span>Handemdowns uses the following cookies on this website, for the following purposes:</span>
+            <ul>
+                <li>to store user's location</li>
+                <li>to store user's website preferences</li>
+                <li>Google Analytics (where applicable)</li>
+            </ul>
+            <br />
+            <h4>Google cookies</h4>
+            <p>Handemdowns uses Google Analytics to analyse the use of this website.  Google Analytics generates statistical and other information about website use
+                by means of cookies, which are stored on users' computers.  The information generated relating to our website is used to create reports about the use
+                of the website. Google will store and use this information.  Google's privacy policy is available at: http://www.google.com/privacypolicy.html.
+            </p>
+            <p>
+                Handemdowns publishes Google Adsense interest-based advertisements on this website.  These are tailored by Google to reflect your interests.  To
+                determine your interests, Google will track your behaviour across the web using cookies.  You can view, delete or add interest categories associated
+                with your browser using Google's Ads Preference Manager, available at: http://www.google.com/ads/preferences/.  You can opt-out of the Adsense partner
+                network cookie at: http://www.google.com/privacy_ads.html.  However, this opt-out mechanism uses a cookie, and if you clear the cookies from your
+                browser your opt-out will not be maintained. To ensure that an opt-out is maintained in respect of a particular browser, you should use the Google
+                browser plug-in available at: http://www.google.com/ads/preferences/plugin.
+            </p>
+            <br />
+            <h4>Refusing cookies</h4>
+            <p>Most browsers allow you to refuse to accept cookies.</p>
+            <p>In Internet Explorer, you can refuse all cookies by clicking 'Tools', 'Internet Options', 'rivacy', and selecting 'Block all cookies' using the sliding selector.</p>
+            <p>In Firefox, you can adjust your cookies settings by clicking 'Tools', 'Options' and 'Privacy'.</p>
+            <p>Blocking cookies will have a negative impact upon the usability of this websites.</p>
+            <br />
+            <h4>Contact Handemdowns</h4>
+            <p>If you have any questions about this cookies policy or Handemdowns handling of cookies, please <a href="../help/contact-us.html" data-th-href="@{/contact-us}">click here</a>.</p>
+            <br />
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+</body>
+</html>

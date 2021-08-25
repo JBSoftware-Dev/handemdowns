@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Message')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+				  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="fragments/header :: header"></div>
+<!-- / HEADER -->
+
+<div class="container main-container">
+	<div class="row pad-y">
+		<!-- MESSAGES -->
+		<h4 data-th-if="${message}" data-th-text="${message}" class="text-center alert alert-success">Message</h4>
+		<h4 data-th-if="${errorMessage}" data-th-text="${errorMessage}" class="text-center alert alert-danger">Message</h4>
+		<!-- MESSAGES -->
+
+		<div data-th-if="${regTokenExpired}">
+			<h4 class="text-center alert alert-danger">Registration expired, to request a new one click the button below.</h4>
+
+			<!-- REGISTRATION STATUS MESSAGES -->
+			<div class="col-lg-6 col-lg-offset-3 col-sm-12">
+				<div id="resend-reg-success" class="alert alert-success reg-message" style="display:none">
+					<a href="#" class="close" aria-label="close">&times;</a><strong>Success!</strong> Email sent.
+				</div>
+				<div id="resend-reg-error" class="alert alert-danger reg-message" style="display:none">
+					<a href="#" class="close" aria-label="close">&times;</a><strong>Error!</strong> Something went wrong, please retry the action.
+				</div>
+			</div>
+			<!-- / REGISTRATION STATUS MESSAGES -->
+
+			<div class="col-lg-12 form-group text-center">
+				<button id="btn-resend-reg" data-th-attr="data-token=${token}" class="btn btn-primary" data-loading-text="&lt;i class='fa fa-spinner fa-spin'&gt;&lt;/i&gt; Sending...">Resend Registration Email</button>
+			</div>
+		</div>
+
+		<div class="col-lg-12 form-group text-center">
+			<a href="/" data-th-href="@{/}" class="btn btn-primary" ><span >Return Home</span></a>
+		</div>
+	</div>
+</div>
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<script data-th-if="${regTokenExpired}">
+	$(document).ready(function() {
+	    // Resend registration token
+		$('#btn-resend-reg').click(function(e) {
+			e.preventDefault();
+			$('#btn-resend-reg').button('loading');
+			$('.reg-message').hide();
+
+			$.post('/resend-registration', {token: $(this).data("token")}, function(response) {
+				if (response.status == "success") {
+					$('#resend-reg-success').fadeIn();
+				}
+			}).fail(function() {
+				$('#resend-reg-error').fadeIn();
+			}).always(function() {
+				$('#btn-resend-reg').button('reset');
+			});
+		});
+	});
+</script>
+</body>
+</html>

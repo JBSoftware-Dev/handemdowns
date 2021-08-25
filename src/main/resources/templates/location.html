@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Locations')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="fragments/header :: header"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="title">Locations</h1>
+        </div>
+        <div class="col-lg-12 text-center">
+            <h3>Let us determine your location!</h3>
+            <img src="../static/images/pin_map.png" data-th-src="@{/images/pin_map.png}" alt="" />
+            <a id="find-location" href="#" class="btn btn-primary"><span>Find My Location</span></a>
+        </div>
+        <div class="col-lg-12 text-center">
+            <h3 style="margin: 50px 0">Or choose a location</h3>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
+            <label for="canadian-locations">
+                <img src="../static/images/flag_canada.png" data-th-src="@{/images/flag_canada.png}" alt="" width="40" height="20"/> Canadian Locations
+            </label>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-sm-12 hero-feature">
+            <ul id="canadian-locations" class="location-accordion">
+                <li>
+                    <a class="toggle" href="#">Select your location</a>
+                    <ul class="inner">
+                        <li data-th-each="province : ${canadianLocationTree.provStates}">
+                            <a href="#" class="toggle" data-th-text="${province.name}">Province</a>
+                            <ul class="inner">
+                                <li data-th-each="city : ${province.cities}">
+                                    <a href="#" class="toggle" data-th-text="${city.name}" data-th-if="${city.areas.size() == 1}" data-location-anchor>City</a>
+                                    <a href="#" class="toggle" data-th-text="${city.name}" data-th-unless="${city.areas.size() == 1}">City</a>
+                                    <ul class="inner" data-th-if="${city.areas.size() > 1}">
+                                        <li data-th-each="area : ${city.areas}">
+                                            <a href="#" class="toggle" data-location-anchor data-th-text="${area.name}">Area</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
+            <label for="american-locations">
+                <img src="../static/images/flag_usa.png" data-th-src="@{/images/flag_usa.png}" alt="" width="40" height="20"/> American Locations
+            </label>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-sm-12 hero-feature">
+            <ul id="american-locations" class="location-accordion">
+                <li>
+                    <a class="toggle" href="#">Select your location</a>
+                    <ul class="inner">
+                        <li data-th-each="state : ${americanLocationTree.provStates}">
+                            <a href="#" class="toggle" data-th-text="${state.name}">State</a>
+                            <ul class="inner">
+                                <li data-th-each="city : ${state.cities}">
+                                    <a href="#" class="toggle" data-th-text="${city.name}" data-th-if="${city.areas.size() == 1}" data-location-anchor>City</a>
+                                    <a href="#" class="toggle" data-th-text="${city.name}" data-th-unless="${city.areas.size() == 1}">City</a>
+                                    <ul class="inner" data-th-if="${city.areas.size() > 1}">
+                                        <li data-th-each="area : ${city.areas}">
+                                            <a href="#" class="toggle" data-location-anchor data-th-text="${area.name}">Area</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- STATUS MESSAGES -->
+        <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+            <div class="alert alert-success" style="display:none">
+                <a href="#" class="close" aria-label="close">&times;</a>Your location has been changed to <span>Location</span>.
+            </div>
+            <div class="alert alert-danger" style="display:none">
+                <a href="#" class="close" aria-label="close">&times;</a> An error occured.
+            </div>
+        </div>
+        <!-- STATUS MESSAGES -->
+        <div class="col-lg-12 form-group text-center">
+            <a href="/" data-th-href="@{/}" class="btn btn-primary"><span>Return Home</span></a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer data-th-replace="fragments/footer :: footer"></footer>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script>
+    function geoLocationCallback(location) {
+        var locationText = getLocationDisplayName(location);
+        $('#user-location-name').text(locationText);
+        var flag = $('#country-flag');
+        if (location.country == "Canada") {
+            flag.attr("src","/images/flag_canada.png");
+        } else {
+            flag.attr("src","/images/flag_usa.png");
+        }
+        flag.removeClass("hidden");
+        $('.alert-success span').text(locationText);
+        $('.alert-success').fadeIn();
+    }
+
+    $(document).ready(function() {
+        // Click handlers
+        $('#find-location').click(function(e) {
+            e.preventDefault();
+            getGeoLocation(function(location) {
+                geoLocationCallback(location);
+            });
+        });
+
+        $('.location-accordion .toggle').click(function(e) {
+            e.preventDefault();
+            if ($(this).next().hasClass('show')) {
+                $(this).next().removeClass('show');
+            } else {
+                $(this).parent().parent().find('li .inner').removeClass('show');
+                $(this).next().toggleClass('show');
+            }
+        });
+
+        $('a[data-location-anchor]').click(function(e) {
+            e.preventDefault();
+            var locationText = $(this).text();
+            $.post('/set-location', {location: locationText}, function(response) {
+                if (response.status == "success") {
+                    var location = response.data;
+                    geoLocationCallback(location);
+                    $('.location-accordion').find('li .inner').removeClass('show');
+                }
+            }).fail(function() {
+                $('.alert-danger').fadeIn();
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

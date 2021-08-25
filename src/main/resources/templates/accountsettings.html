@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Account Settings')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="fragments/header :: header"></div>
+<!-- / HEADER -->
+
+<div class="container main-container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="title">Account Settings</h1>
+        </div>
+
+        <!-- ACCOUNT SETTINGS FORM -->
+        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
+            <form id="account-settings-form" class="form-horizontal" action="#" data-th-action="@{/account-settings}" data-th-object="${accountSettingsForm}" method="post"
+                  data-fv-live="disabled">
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-4">
+                        <span class="">Change Password</span>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <input type="password" class="form-control clearable" placeholder="Old Password" data-th-field="*{oldPassword}"
+                                   data-fv-notempty="true" data-fv-notempty-message="Old password is required"
+                                   data-fv-stringlength="true" data-fv-stringlength-min="5" data-fv-stringlength-max="30" data-fv-stringlength-message="Old password must be 5-30 characters long" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control clearable" placeholder="New Password" data-th-field="*{password}"
+                                   data-fv-notempty="true" data-fv-notempty-message="New password is required"
+                                   data-fv-stringlength="true" data-fv-stringlength-min="5" data-fv-stringlength-max="30" data-fv-stringlength-message="New password must be 5-30 characters long" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control clearable" placeholder="Confirm Password" data-th-field="*{matchingPassword}"
+                                   data-fv-notempty="true" data-fv-notempty-message="Confirm password is required"
+                                   data-fv-stringlength="true" data-fv-stringlength-min="5" data-fv-stringlength-max="30" data-fv-stringlength-message="Confirm password must be 5-30 characters long"
+                                   data-fv-identical="true" data-fv-identical-field="password" data-fv-identical-message="New password and confirm password are different" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATUS MESSAGES -->
+                <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+                    <div class="alert alert-success" style="display:none">
+                        <a href="#" class="close" aria-label="close">&times;</a><strong>Success!</strong> Settings Saved.
+                    </div>
+                    <div class="alert alert-danger" style="display:none">
+                        <a href="#" class="close" aria-label="close">&times;</a> Invalid old password.
+                    </div>
+                </div>
+                <!-- STATUS MESSAGES -->
+
+                <div class="col-lg-12 form-group text-center">
+                    <button type="submit" class="btn btn-primary btn-submit" data-loading-text="&lt;i class='fa fa-spinner fa-spin'&gt;&lt;/i&gt; Saving...">Save Settings</button>
+                </div>
+            </form>
+        </div>
+        <!-- / ACCOUNT SETTINGS FORM -->
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../static/js/plugins/formvalidation/formValidation.min.js" data-th-src="@{/js/plugins/formvalidation/formValidation.min.js}"></script>
+<script src="../static/js/plugins/formvalidation/framework/bootstrap.min.js" data-th-src="@{/js/plugins/formvalidation/framework/bootstrap.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script>
+    $(document).ready(function() {
+        // Account settings form
+        $('#account-settings-form').formValidation().on('success.form.fv', function(e) {
+            e.preventDefault();
+            $('.btn-submit').button('loading');
+            $('.alert').hide();
+
+            var $form = $(e.target);
+            $.post($form.attr('action'), $form.serialize(), function(response) {
+                if (response.status == "success") {
+                    $('#account-settings-form').data('formValidation').resetForm(true);
+                    $('.alert-success').fadeIn();
+                }
+            }).fail(function() {
+                $('.alert-danger').fadeIn();
+            }).always(function() {
+                $('.btn-submit').button('reset');
+            });
+        });
+    });
+</script>
+</body>
+</html>

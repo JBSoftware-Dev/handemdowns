@@ -1,0 +1,52 @@
+//
+// Overrides
+// --------------------------------------------------
+
+// Bootstrap
+@media screen and (max-width: 768px) {
+    .dropdown-menu>li>a {
+        padding: 10px 15px;
+    }
+}
+body.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0 !important;
+}
+
+// Owl Carousel
+#owl-slider .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+// FormValidation
+.fv-hide-input {
+    height: 0;
+    min-height: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+// Dropzone
+.dropzone {
+    border: none;
+}
+.dropzone .dz-message {
+    text-align: left;
+    margin: 0;
+    cursor: pointer;
+}
+.dropzone .dz-progress, .dropzone .dz-preview .dz-details .dz-size, .dropzone .dz-error-mark, .dropzone .dz-success-mark {
+    display: none;
+}
+
+// ReCaptcha
+#captcha-container>div, #captcha-container>div>div {
+    margin: auto;
+}
+.help-block[data-fv-for='g-recaptcha-response'] {
+    text-align: center;
+}

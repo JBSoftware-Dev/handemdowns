@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<body>
+<div data-th-fragment="header">
+	<header>
+		<div class="container">
+			<div class="pull-left logo">
+				<a href="/" data-th-href="@{/}"><img src="../../static/images/logo.png" data-th-src="@{/images/logo.png}" class="img-responsive" alt="Home" width="286" height="61" /></a>
+			</div>
+			<div class="pull-right">
+				<div data-th-unless="${currentUser}" class="register">
+					Don't have an account?
+					<a href="../register.html" data-th-href="@{/register}">Click here!</a>
+				</div>
+				<a data-th-unless="${currentUser}" class="btn btn-primary pull-right" href="../login.html" data-th-href="@{/login}">Sign In</a>
+				<div data-th-if="${currentUser}" class="btn-group user-menu pull-right">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						<span class="pull-left"><i class="fa fa-user icon-user"></i></span>
+						<span data-th-text="${currentUser.name}">Name</span> <span ><i class="fa fa-caret-down"></i></span>
+					</button>
+					<ul class="dropdown-menu menu-content" role="menu">
+						<li><a href="../myads.html" data-th-href="@{/my-ads}">My Ads</a></li>
+						<li><a href="../watchlist.html" data-th-href="@{/watchlist}">Watchlist</a></li>
+						<li class="divider"></li>
+						<li><a href="../accountsettings.html" data-th-href="@{/account-settings}">Account Settings</a></li>
+						<li data-th-if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="divider"></li>
+						<li data-th-if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}"><a href="../admin/acp-home.html" data-th-href="@{/admin/home}">Admin Control Panel</a></li>
+						<li class="divider"></li>
+						<li><form class="btn-signout" data-th-action="@{/logout}" method="post"><button type="submit" value="Sign Out">Sign Out</button></form></li>
+					</ul>
+				</div>
+				<a class="btn btn-primary pull-right" href="../createad.html" data-th-href="@{/create-ad}">Create Ad</a>
+			</div>
+		</div>
+	</header>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand visible-xs"  data-toggle="collapse" data-target=".navbar-ex1-collapse">Search Ads</a>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<div class="toolbar-search-input">
+							<form action="#" data-th-action="@{/search}" data-th-object="${adSearchForm}" onsubmit="return validateSearch();">
+								<div class="input-group">
+									<input id="topic" type="text" class="form-control input-search" placeholder="Enter something to search" name="topic" data-th-value="${param.topic == null ? '' : param.topic[0]}" />
+									<input id="category-search" type="hidden" name="categoryCode" data-th-value="${userCategory != null ? userCategory.code : 'ALL'}" autocomplete="false" />
+									<input id="location-search" type="hidden" name="locationCode" data-th-value="${userLocation != null ? userLocation.code : ''}" autocomplete="false" />
+		                            <span class="input-group-btn">
+		                                <button id="btn-search" class="btn btn-default no-border-left" type="submit"><i class="fa fa-search"></i></button>
+		                            </span>
+								</div>
+							</form>
+						</div>
+					</li>
+					<li class="nav-dropdown category-menu">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Category: <span data-th-text="${userCategory != null ? userCategory.name : 'ALL'}"></span> <span class="caret"></span>
+						</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="category" data-category-code="ALL">All</a></li>
+                            <li data-th-each="this : ${categories}"><a href="#" class="category" data-th-attr="data-category-code=${this.code}" data-th-text="${this.name}"></a></li>
+                        </ul>
+					</li>
+					<li>
+						<a href="../location.html" data-th-href="@{/locations}">
+							Location: <span id="user-location-name" data-th-text="${userLocation != null ? userLocation.getDisplayName() : 'Select location'}"></span>
+						</a>
+					</li>
+				</ul>
+				<img id="country-flag" src="../../static/images/flag_canada.png" alt="" width="40" height="20" data-th-classappend="${userLocation == null} ? 'hidden' : ''"
+					 data-th-src="${userLocation == null ? '/images/flag_canada.png' : (userLocation.country == 'Canada' ? '/images/flag_canada.png' : '/images/flag_usa.png')}"/>
+			</div>
+		</div>
+	</nav>
+</div>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../static/js/library/jquery-2.2.4.min.js"></script>
+<script src="../../static/js/bootstrap/bootstrap.min.js"></script>
+<script src="../../static/js/handemdowns.min.js"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="admin/fragments/acp-head :: head('Locations')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<body>
+<!-- NAVIGATION -->
+<div data-th-replace="admin/fragments/acp-navigation :: navigation"></div>
+<!-- / NAVIGATION -->
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Locations</h1>
+        </div>
+        <div class="col-lg-8">
+            <!-- MAP PLOTS CLUSTERER -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-map fa-fw"></i> Map Plot Clusterer
+                </div>
+                <div class="panel-body">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div id="map" style="height: 800px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / MAP PLOTS CLUSTERER -->
+
+            <!-- LOCATIONS -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-globe fa-fw"></i> Locations
+                </div>
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse567">Canadian Locations</a>
+                                </h4>
+                            </div>
+                            <div id="collapse567" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li data-th-each="this : ${canadianLocations}">
+                                            <span data-th-text="${this.toString()}"></span>
+                                            <ul>
+                                                <li data-th-each="mapPlot : ${this.mapPlots}">
+                                                    <span data-th-text="${mapPlot.toString()}"></span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse489">American Locations</a>
+                                </h4>
+                            </div>
+                            <div id="collapse489" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    None
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / LOCATIONS -->
+        </div>
+        <div class="col-lg-4">
+            <!-- GEOLOCATION TEST -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> GeoLocation Test
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <span>Enter Coordinates</span>
+                    </div>
+                    <div class="padding-bottom-10">
+                        <input id="lat" type="text" class="form-control" title="" placeholder="Latitude" />
+                    </div>
+                    <div class="padding-bottom-10">
+                        <input id="lon" type="text" class="form-control" title="" placeholder="Longitude" />
+                    </div>
+                    <div class="text-center geolocation-results">
+                        <p><strong>GeoLocation:</strong><br><span class="geolocation"></span></p>
+                        <p><strong>Found MapPlots:</strong><br><span class="found-mapplots"></span></p>
+                        <p><strong>Closest MapPlot:</strong><br><span class="closest-mapplot"></span></p>
+                    </div>
+
+                    <div class="alert alert-danger geolocation" style="display:none">
+                        <a href="#" class="close" aria-label="close">&times;</a> An error occured.
+                    </div>
+                    <a id="run-geolocation-test" href="#" class="btn btn-default btn-block">Run Test</a>
+                </div>
+            </div>
+            <!-- / GEOLOCATION TEST -->
+
+            <!-- POSTAL CODE TEST -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Postal Code Test
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <span>Enter Postal Code</span>
+                    </div>
+                    <div class="padding-bottom-10">
+                        <input id="postal-code" type="text" class="form-control" title="" placeholder="PostalCode" />
+                    </div>
+                    <div class="text-center postal-code-results">
+                        <p><strong>GeoLocation:</strong><br><span class="geolocation"></span></p>
+                        <p><strong>Found MapPlots:</strong><br><span class="found-mapplots"></span></p>
+                        <p><strong>Closest MapPlot:</strong><br><span class="closest-mapplot"></span></p>
+                    </div>
+
+                    <div class="alert alert-danger postal-code" style="display:none">
+                        <a href="#" class="close" aria-label="close">&times;</a> An error occured.
+                    </div>
+                    <a id="run-postal-code-test" href="#" class="btn btn-default btn-block">Run Test</a>
+                </div>
+            </div>
+            <!-- / POSTAL CODE TEST -->
+        </div>
+    </div>
+</div>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../../static/js/handemdowns-admin.min.js" data-th-src="@{/js/handemdowns-admin.min.js}"></script>
+<script src="../../static/js/plugins/metis-menu/metisMenu.min.js" data-th-src="@{/js/plugins/metis-menu/metisMenu.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../../static/js/plugins/marker-clusterer/markerclusterer.min.js" data-th-src="@{/js/plugins/marker-clusterer/markerclusterer.min.js}"></script>
+<script data-th-src="@{https://maps.googleapis.com/maps/api/js?key=__${mapsKey}__&callback=initMap}" async defer></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script data-th-inline="javascript">
+    var mapPlots = [];
+    $.each([[${mapPlots}]], function(k, v) {mapPlots.push({position:{lat: v.latitude, lng: v.longitude}, label: v.postalCode});});
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: {lat: 52, lng: -100},
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        var markers = mapPlots.map(function(mapPlot, i) {
+            return new google.maps.Marker({
+                position: mapPlot.position,
+                label: mapPlot.label
+            });
+        });
+        new MarkerClusterer(map, markers, {imagePath: '../../images/m'});
+    }
+
+    $(document).ready(function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                $('#lat').val(position.coords.latitude);
+                $('#lon').val(position.coords.longitude);
+            }, function(error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        console.log("User denied the request for GeoLocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        console.log("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        console.log("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        console.log("An unknown error occurred.");
+                        break;
+                }
+            });
+        }
+
+        $('#run-geolocation-test').click(function(e) {
+            e.preventDefault();
+            $(this).button('loading');
+            $('.alert.geolocation').hide();
+
+            $.get('/admin/geolocation-test', {lat: $('#lat').val(), lon: $('#lon').val()}, function(response) {
+                if (response.status == "success") {
+                    var results;
+                    results = response.data;
+                    $('.geolocation-results .geolocation').text(JSON.stringify(results.geoLocation));
+                    $('.geolocation-results .found-mapplots').text(JSON.stringify(results.foundMapPlots));
+                    $('.geolocation-results .closest-mapplot').text(JSON.stringify(results.closest));
+                }
+            }).fail(function(xhr) {
+                console.log(xhr);
+                $('.alert-danger.geolocation').fadeIn();
+            }).always(function() {
+                $('#run-geolocation-test').button('reset');
+            });
+        });
+
+        $('#run-postal-code-test').click(function(e) {
+            e.preventDefault();
+            $(this).button('loading');
+            $('.alert.postal-code').hide();
+
+            $.get('/admin/postal-code-test', {postalCode: $('#postal-code').val()}, function(response) {
+                if (response.status == "success") {
+                    var results;
+                    results = response.data;
+                    $('.postal-code-results .geolocation').text(JSON.stringify(results.geoLocation));
+                    $('.postal-code-results .found-mapplots').text(JSON.stringify(results.foundMapPlots));
+                    $('.postal-code-results .closest-mapplot').text(JSON.stringify(results.closest));
+                }
+            }).fail(function(xhr) {
+                console.log(xhr);
+                $('.alert-danger.postal-code').fadeIn();
+            }).always(function() {
+                $('#run-postal-code-test').button('reset');
+            });
+        });
+    });
+</script>
+</body>
+</html>

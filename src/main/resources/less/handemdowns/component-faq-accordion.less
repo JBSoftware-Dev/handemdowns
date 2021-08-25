@@ -1,0 +1,26 @@
+.faqHeader {
+    font-size: 27px;
+    margin: 20px;
+}
+.panel-heading [data-toggle="collapse"]:after {
+    font-family: FontAwesome;
+    content: "\f0da";
+    float: right;
+    color: #ffa500;
+    font-size: 24px;
+    line-height: 22px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    color: #454444;
+}

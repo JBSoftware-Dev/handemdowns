@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Search Results')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="fragments/header :: header"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container">
+    <div class="row">
+        <!-- REFINE MENU -->
+        <div class="col-lg-3" data-th-fragment="refine-menu">
+            <div class="col-lg-12">
+                <div class="no-padding"><h1 class="title">Refine Search</h1></div>
+                <div id="refine-menu">
+                    <div class="list-group panel panel-cat">
+
+                        <a href="#sub1" class="list-group-item" data-toggle="collapse" data-parent="#refine-menu" data-th-if="${areas}">Area <i class="fa fa-caret-down pull-right"></i></a>
+                        <div class="list-group-sub collapse" id="sub1" data-th-if="${areas}" data-th-classappend="${param.area != null ? 'in' : ''}">
+                            <a href="#" class="list-group-item area" data-th-each="location : ${areas}"
+                               data-th-text="${location.area}"
+                               data-th-classappend="${param.area != null && param.area[0] == location.area ? 'active' : ''}">Whoville</a>
+                        </div>
+
+                        <a href="#" class="list-group-item">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <input id="willDeliver" type="checkbox" data-th-checked="${param.willDeliver != null && param.willDeliver[0] == 'true' ? 'true' : 'false'}">
+                                    <label for="willDeliver"> Will Deliver</label>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / REFINE MENU -->
+
+        <div class="clearfix visible-sm"></div>
+
+        <div data-th-if="${ads.size() == 0}" class="col-lg-9 col-md-9 col-sm-12 hero-feature">
+            <span class="title  text-center">No ads found, try broadening your search.</span>
+        </div>
+
+        <!-- FOUND ADS -->
+        <div id="found-ads" data-th-unless="${ads.size() == 0}" class="col-lg-9">
+            <h1 class="title">Search Results</h1>
+
+            <!-- SEARCH RESULTS -->
+            <div id="results-data">
+                <div data-th-replace="fragments/ads :: ad-panels-lg"></div>
+            </div>
+            <!-- / SEARCH RESULTS -->
+        </div>
+        <!-- / FOUND ADS -->
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<script src="../static/js/plugins/jquery.simplePagination/jquery.simplePagination.min.js" data-th-src="@{/js/plugins/jquery.simplePagination/jquery.simplePagination.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script data-th-inline="javascript">
+    $(document).ready(function() {
+        // Pagination
+        $('#search-pagination').pagination({
+            items: /*[[${items}]]*/ 100,
+            itemsOnPage: 12,
+            currentPage: /*[[${currentPage}]]*/ 1,
+            onPageClick: function(pageNumber, event) {
+                event.preventDefault();
+                if (!/[?&]page=/.test(window.location.search)) {
+                    window.location.href = window.location.href + "&page=" + pageNumber;
+                } else {
+                    window.location.href = "/search?" + updateUrlParam("page", pageNumber);
+                }
+            }
+        });
+
+        // Will Deliver Checkbox
+        $('#willDeliver').change(function() {
+            if ($(this).is(":checked")) {
+                window.location.href = window.location.href + "&willDeliver=true";
+            } else {
+                window.location.href = window.location.href.replace("&willDeliver=true", "");
+            }
+        });
+
+        // Click handlers
+        $('.area').click(function(e) {
+            e.preventDefault();
+            if (!/[?&]area=/.test(window.location.search)) {
+                window.location.href = window.location.href + "&area=" + $(this).text();
+            } else {
+                window.location.href = "/search?" + updateUrlParam("area", $(this).text());
+            }
+        });
+    });
+</script>
+</body>
+</html>

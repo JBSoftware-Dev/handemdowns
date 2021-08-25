@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Help')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="help/fragments/header :: header('help')"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container main-container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="title">Help</h1>
+        </div>
+        <div class="col-lg-12">
+            <div class="panel-group" id="accordion">
+                <div class="faqHeader">General questions</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse567">How do I post an ad?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse567" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Posting an ad is quite simple.  Click on Create Ad and start filling in the required information.  Phone Number is not required, neither
+                            are any images but both improve your capability to get rid of an item.  Should you decide to upload some images they will be automatically
+                            compressed and resized by your devices browser to save your data usage and our server resources.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse813">Is my postal code really required to create an ad.</a>
+                        </h4>
+                    </div>
+                    <div id="collapse813" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            We provide ads based on your proximity to other ads by their location, postal code is just a general idea of where the ad is located.  The postal code field is
+                            required but you may use an adjacent postal code or the postal code of a nearby landmark/mall/plaza/store.
+                            <br>
+                            An easy way to find nearby postal codes is from Google Maps.  You can find a location, long press (in the app) or right-click (on website) to pin the location
+                            and view the address and postal code.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse985">How can I improve interest of my item or service?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse985" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Handemdowns is new and there may not be many ads in your area but that doesn't mean you shouldn't get the ball rolling.  Be sure to include all the relevant
+                            information, including images helps and be sure to properly form your title and description for readability.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse285">Do I need to register to use Handemdowns?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse285" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Nope!  You can start giving items away and free up that space right now!  Although if you register you will have the ability to login and track your created ads,
+                            you will be able to hold/activate ads and you will be able to track ads you are interested in with the watchlist.  Furthermore you will not need to confirm ads
+                            whereas annonymous users must confirm their ads by email.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqHeader">Item Donars</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse489">Who can give away items?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse489" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Absolutely anybody!  If you are below the age of 16 it is strongly recommended to have a parent or guardian help you with the transaction.  You do not need
+                            to register to create an ad, you can start using Handemdowns right away.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse364">I want to get ride of some items - what are the steps?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse364" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            The steps involved to create an ad are really simple:
+                            <ul>
+                                <li>Register an account and activate it (Optional)</li>
+                                <li>Go to the <a href="../createad.html" data-th-href="@{/create-ad}">Create Ad</a> page and fill out the form</li>
+                                <li>Confirm Ad if you don't have an account (Optional)</li>
+                                <li>Wait a short time for the ad to be automatically activated</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse511">Am I allowed to charge?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse511" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            No, please do not put a price in the title or description.  Although we cannot stop this, we encourage users to report any ads that violate this rule.  We ask
+                            that our users try to keep this platform a commuications channel to exchange free goods and services only.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqHeader">Recipients</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse222">I am interested in aquiring an item from an ad - what are the steps?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse222" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            All you need to do is:
+                            <ul>
+                                <li>Register an account and activate it (Optional)</li>
+                                <li>On the item's page fill out the "Contact Poster" section to send a message the item's owner</li>
+                                <li>Wait for a reply from donar, you can now have a conversation through email.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse791">What procautions should I take when aquiring an item?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse791" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            The best thing to do is be fully aware, if going to a donar residence you should do research into where you are going.  Since this is a free exchange there will most
+                            likely be no problems whatsoever but it's better to be aware or ask to meet at a place you know.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse124">Is there a limit to the amount of items I can take?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse124" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            There is no limit at all, in fact most people are probably glad to have their unneeded items removed from their possesion.  We ask that you use better judgement and
+                            try not to take more than what is needed.  The applies particularly to clothes and books.  Handemdowns greatly appreciates your cooporation in this matter.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+</body>
+</html>

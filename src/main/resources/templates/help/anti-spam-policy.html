@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Anti-Spam Policy')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="help/fragments/header :: header('policies')"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container main-container">
+    <div class="row">
+        <div data-th-replace="help/fragments/policies-menu :: policies-menu('Anti-Spam Policy')"></div>
+        <div class="col-lg-9">
+            <h1 class="title">Anti-Spam Policy</h1>
+        </div>
+        <div class="col-lg-9">
+            <h4>What is spam?</h4>
+            <p>In the context of electronic messaging, spam refers to unsolicited, bulk or indiscriminate messages, typically sent for a commercial purpose.</p>
+            <br />
+            <h4>Handemdowns has a zero-tolerance spam policy.</h4>
+            <br />
+            <h4>Automated spam filtering</h4>
+            <p>Handemdowns messaging systems automatically scan all incoming email and other messages, and filter-out messages that appear to be spam.</p>
+            <br />
+            <h4>Problems with spam filtering</h4>
+            <p>No message filtering system is 100% accurate, and from time to time legitimate messages will be filtered-out by Handemdowns systems.  If you believe
+                this has happened to a message you have sent, please advise the message recipient by another means.
+            </p>
+            <p>You can reduce the risk of a message being caught by the spam filters by sending the message in plain text (i.e. no HTML), removing any attachments, and
+                ensuring that your messages are scanned for malware before dispatch.
+            </p>
+            <br />
+            <h4>User spam</h4>
+            <p>Handemdowns provides a service that enables users to send email messages to others.  Users must not use this service to send unsolicited, bulk or indiscriminate
+                messages, whether or not for a commercial purposes.  Full terms and conditions concerning the use of the facility are set out in Terms of Use.
+            </p>
+            <br />
+            <h4>Receipt of unwanted messages from Handemdowns</h4>
+            <p>In the unlikely event that you receive any message from Handemdowns or sent using Handemdowns systems that may be considered to be spam, please contact Handemdowns
+                using the details below and the matter will be investigated.
+            </p>
+            <br />
+            <h4>Changes to this anti-spam policy</h4>
+            <p>Handemdowns may amend this anti-spam policy at any time by publishing a new version on this website.</p>
+            <br />
+            <h4>Contact Handemdowns</h4>
+            <p>If you have any questions about this anti-spam policy, please <a href="../help/contact-us.html" data-th-href="@{/contact-us}">click here</a>.</p>
+            <br />
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+</body>
+</html>

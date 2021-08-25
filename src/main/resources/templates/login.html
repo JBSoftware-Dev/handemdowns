@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Login')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+				  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- SOCIAL ICONS -->
+<div class="ssk-sticky ssk-left ssk-center ssk-lg" data-th-fragment="social-icons">
+	<a href="https://www.facebook.com/handemdowns" class="ssk ssk-facebook"></a>
+	<a href="https://www.twitter.com/handemdowns" class="ssk ssk-twitter"></a>
+	<a href="https://plus.google.com/" class="ssk ssk-google-plus"></a>
+</div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="col-lg-2 centering">
+			<h1 class="title-no-underline text-center">Login</h1>
+			<a href="/" data-th-href="@{/}"><img src="../static/images/logo.png" class="center-block img-responsive" data-th-src="@{/images/logo.png}" alt="Handemdowns" width="357" height="76" /></a>
+			<div class="panel-body">
+
+				<!-- STATUS MESSAGES -->
+				<div data-th-if="${param.logout}" class="alert alert-success">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> You have been logged out.
+				</div>
+				<div data-th-if="${param.error}" class="alert alert-danger">
+					<a data-th-if="${session.SPRING_SECURITY_LAST_EXCEPTION}" href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Error!</strong> <span data-th-text="${session?.SPRING_SECURITY_LAST_EXCEPTION}">Login Error</span>
+				</div>
+				<div data-th-if="${param.regSuccess}" class="alert alert-success">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Account verfied! Welcome to Handemdowns
+				</div>
+                <div data-th-if="${param.updatePwSuccess}" class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Password updated.
+                </div>
+				<!-- / STATUS MESSAGES -->
+
+				<!-- LOGIN FORM -->
+				<form class="form-horizontal" data-th-action="@{/login/submit}" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Email" name="username" />
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="Password" name="password" />
+					</div>
+					<div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <label for="remember-me"> Remember Me</label>
+                        </div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary fill-width">Sign In</button>
+					</div>
+				</form>
+				<!-- / LOGIN FORM -->
+
+				<div>
+					<a class="pull-left" href="register.html" data-th-href="@{/register}">Register</a>
+					<a class="pull-right" href="forgot.html" data-th-href="@{/forgot}">Forgot Password</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+</body>
+</html>

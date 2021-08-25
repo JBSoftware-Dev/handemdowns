@@ -1,0 +1,84 @@
+{
+  "properties": [
+    {
+      "name": "server.application.url",
+      "type": "java.lang.String",
+      "description": "The application URL, this will be used for generating the web app's hostname."
+    },
+
+    {
+      "name": "server.datasource.initialize",
+      "type": "java.lang.Boolean",
+      "description": "Initializes the database with the required data to get up and running.  Included Roles, Permissions, Users, associations, business specific data, etc."
+    },
+
+    {
+      "name": "cloud.aws.region.auto",
+      "type": "java.lang.Boolean",
+      "description": "Enables automatic region detection based on the EC2 meta data service."
+    },
+    {
+      "name": "cloud.aws.region.static",
+      "type": "java.lang.String",
+      "description": "Configures a static region for the application."
+    },
+    {
+      "name": "cloud.aws.credentials.accessKey",
+      "type": "java.lang.String",
+      "description": "The access key to be used with a static provider."
+    },
+    {
+      "name": "cloud.aws.credentials.secretKey",
+      "type": "java.lang.String",
+      "description": "The secret key to be used with a static provider."
+    },
+    {
+      "name": "cloud.aws.credentials.instanceProfile",
+      "type": "java.lang.Boolean",
+      "description": "Configures an instance profile credentials provider with no further configuration."
+    },
+    {
+      "name": "cloud.aws.s3.bucket",
+      "type": "java.lang.String",
+      "description": "The name of the S3 bucket used for the web app."
+    },
+    {
+      "name": "cloud.aws.stack.auto",
+      "type": "java.lang.Boolean",
+      "description": "Enables the automatic stack name detection for the application."
+    },
+
+    {
+      "name": "api.google.maps.key",
+      "type": "java.lang.String",
+      "description": "The Google Maps api key from Google API Console."
+    },
+    {
+      "name": "api.google.recaptcha.key",
+      "type": "java.lang.String",
+      "description": "The Google reCaptcha server key used for server-side requests to validate a reCaptcha."
+    },
+
+    {
+      "name": "handemdowns.security.adminAccount",
+      "type": "java.lang.String",
+      "description": "The name or email of the Handemdowns Master Admin account."
+    },
+    {
+      "name": "handemdowns.security.adminPassword",
+      "type": "java.lang.String",
+      "description": "The password of the Handemdowns Master Admin account."
+    },
+
+    {
+      "name": "cache.category.maximum.size",
+      "type": "java.lang.Integer",
+      "description": "The maximum amount of categories to cache.  This should just be the total amount of categories."
+    },
+    {
+      "name": "cache.location.maximum.size",
+      "type": "java.lang.Integer",
+      "description": "The maximum amount of locations to cache."
+    }
+  ]
+}

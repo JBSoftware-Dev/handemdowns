@@ -1,0 +1,32 @@
+.location-dropdown {
+    left: 15px;
+}
+.location-dropdown .overflow-menu {
+    max-height: 250px;
+    min-width: 250px;
+}
+@media screen and (max-width: 768px) {
+    .location-dropdown .overflow-menu {
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 60px;
+        max-height: 250px;
+        min-width: 250px;
+        padding-left: 0;
+        list-style: none;
+    }
+}
+.location-dropdown .overflow-menu>li>a, .location-dropdown .overflow-menu .tree>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    color: #333;
+    white-space: nowrap;
+}
+.location-dropdown .overflow-menu>li>a:hover, .location-dropdown .overflow-menu>li>a:focus,
+.location-dropdown .overflow-menu .tree>li>a:hover, .location-dropdown .overflow-menu .tree>li>a:hover {
+    color: #262626;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}

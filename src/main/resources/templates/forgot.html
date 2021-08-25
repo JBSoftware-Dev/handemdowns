@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Forgot Password')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+				  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- SOCIAL ICONS -->
+<div class="ssk-sticky ssk-left ssk-center ssk-lg" data-th-fragment="social-icons">
+	<a href="https://www.facebook.com/handemdowns" class="ssk ssk-facebook"></a>
+	<a href="https://www.twitter.com/handemdowns" class="ssk ssk-twitter"></a>
+	<a href="https://plus.google.com/" class="ssk ssk-google-plus"></a>
+</div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="col-lg-2 centering">
+			<h1 class="title-no-underline text-center">Forgot your password?</h1>
+			<a href="/" data-th-href="@{/}"><img src="../static/images/logo.png" class="center-block img-responsive" data-th-src="@{/images/logo.png}" alt="Handemdowns" width="357" height="76" /></a>
+			<div class="panel-body">
+				<div data-th-if="${param.success}" class="alert alert-success collapse">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>A Password Reset email has been to you
+				</div>
+				<div data-th-if="${param.emailError}" class="alert alert-danger collapse">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> Email does not exist or account is not active
+				</div>
+
+				<!-- STATUS MESSAGES -->
+				<div class="alert alert-success" style="display:none">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> A Password Reset email has been to you.
+				</div>
+				<div id="error" class="alert alert-danger" style="display:none">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> Something went wrong, please retry the action.
+				</div>
+				<div id="userNotFoundError" class="alert alert-danger" style="display:none">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> User not found.
+				</div>
+				<div id="userDisabledError" class="alert alert-danger" style="display:none">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> User account is disabled.
+				</div>
+				<!-- / STATUS MESSAGES -->
+
+				<!-- FORGOT PASSWORD FORM -->
+				<form id="forgot-password-form" class="form-horizontal" action="#" data-th-action="@{/forgot}" data-th-object="${forgotPasswordForm}" method="post"
+					  data-fv-addons="reCaptcha2" data-fv-addons-recaptcha2-sitekey="6LcS_QoUAAAAAE6h7mzI3jiEx9HTOm9N5jHWE09x"
+					  data-fv-addons-recaptcha2-element="captcha-container" data-fv-addons-recaptcha2-message="The captcha is not valid"
+					  data-fv-live="disabled">
+					<div class="form-group">
+						<input type="email" class="form-control" placeholder="Email" data-th-field="*{email}"
+							   data-fv-notempty="true" data-fv-notempty-message="Email is required and cannot be empty"
+							   data-fv-emailaddress-message="Not a valid email address"
+							   data-fv-stringlength="true" data-fv-stringlength-min="5" data-fv-stringlength-max="50" data-fv-stringlength-message="Email must be 5-50 characters long" />
+					</div>
+					<div class="form-group">
+						<div id="captcha-container"></div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-submit fill-width" data-loading-text="&lt;i class='fa fa-spinner fa-spin'&gt;&lt;/i&gt; Resetting...">Reset Password</button>
+					</div>
+				</form>
+				<!-- / FORGOT PASSWORD FORM -->
+
+				<div class="pull-left login-page-links">
+					<a class="pull-left" href="login.html" data-th-href="@{/login}">Sign In</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../static/js/plugins/formvalidation/formValidation.min.js" data-th-src="@{/js/plugins/formvalidation/formValidation.min.js}"></script>
+<script src="../static/js/plugins/formvalidation/framework/bootstrap.min.js" data-th-src="@{/js/plugins/formvalidation/framework/bootstrap.min.js}"></script>
+<script src="../static/js/plugins/formvalidation/addons/reCaptcha2.min.js" data-th-src="@{/js/plugins/formvalidation/addons/reCaptcha2.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script>
+	$(document).ready(function() {
+	    // Forgot password form
+		$('#forgot-password-form').formValidation().on('success.form.fv', function(e) {
+			e.preventDefault();
+			$('.btn-submit').button('loading');
+			$('.alert').hide();
+
+			var $form = $(e.target);
+			$.post($form.attr('action'), $form.serialize(), function(response) {
+				if (response.status == "success") {
+                    $('#forgot-password-form').data('formValidation').resetForm(true);
+                    FormValidation.AddOn.reCaptcha2.reset('captcha-container');
+					$('.alert-success').fadeIn();
+				}
+			}).fail(function(xhr) {
+			    var response = $.parseJSON(xhr.responseText);
+                var error = response.data;
+                if (error == "UserNotFound") {
+                    $('#userNotFoundError').fadeIn();
+                } else if (error == "UserDisabled") {
+                    $('#userDisabledError').fadeIn();
+                } else {
+                    $('#error').fadeIn();
+                }
+                $('#forgot-password-form').data('formValidation').resetForm(true);
+                FormValidation.AddOn.reCaptcha2.reset('captcha-container');
+			}).always(function() {
+				$('.btn-submit').button('reset');
+			});
+		});
+	});
+</script>
+</body>
+</html>

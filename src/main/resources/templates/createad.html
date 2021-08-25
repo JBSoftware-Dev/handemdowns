@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Create or Edit Ad')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="fragments/header :: header"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container main-container">
+    <div id="ad" class="row" data-th-attr="data-ad-id=${ad?.id}, data-ad-token=${ad?.token}">
+        <div class="col-lg-12">
+            <h1 class="title" data-th-text="${ad} ? 'Edit Ad' : 'Create Ad'">Create/Edit Ad</h1>
+        </div>
+        <div class="col-lg-12" data-th-if="${ad}">
+            <div class="btn-group">
+                Status: <span data-th-text="${ad?.status}">Status</span>
+            </div>
+            <br>
+            <div class="btn-group">
+                <button id="btn-expire-ad" type="button" class="btn btn-danger" data-th-if="${ad}">Delete Ad</button>
+            </div>
+        </div>
+
+        <!-- CREATE AD FORM -->
+        <div class="col-lg-12">
+            <form id="create-ad-form" class="form-horizontal dropzone" action="#" data-th-action="@{/save-ad}" data-th-object="${createAdForm}" method="post" enctype="multipart/form-data" autocomplete="off"
+                  data-fv-live="disabled">
+                <div class="col-lg-12 form-group" data-th-unless="${currentUser}">
+                    <div class="col-lg-2">
+                        <span class="">Email</span>
+                    </div>
+                    <div class="col-lg-10">
+                        <input id="email" type="email" class="form-control" title="" name="email" data-th-value="${ad?.email}"
+                               data-fv-notempty="true" data-fv-notempty-message="Email is required and cannot be empty"
+                               data-fv-emailaddress-message="Not a valid email address"
+                               data-fv-stringlength="true" data-fv-stringlength-min="5" data-fv-stringlength-max="50" data-fv-stringlength-message="Email must be 5-50 characters long" />
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Title</span>
+                    </div>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" title="" data-th-name="title" data-th-value="${ad?.title}"
+                               data-fv-notempty="true" data-fv-notempty-message="Title is required and cannot be empty"
+                               data-fv-stringlength="true" data-fv-stringlength-max="50" data-fv-stringlength-message="Title must be less than 50 characters" />
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Description</span>
+                    </div>
+                    <div class="col-lg-10">
+                        <textarea rows="5" class="form-control" title="" data-th-name="description" data-th-text="${ad?.description}"
+                               data-fv-notempty="true" data-fv-notempty-message="Description is required and cannot be empty"
+                               data-fv-stringlength="true" data-fv-stringlength-max="1000" data-fv-stringlength-message="Description must be less than 1000 characters"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Images</span>
+                    </div>
+
+                    <!-- DROPZONE -->
+                    <div class="col-lg-10">
+                        <div class="col-lg-8 dz-message no-padding">
+                            <div class="tile color">
+                                <h3 class="title text-center">Add Image</h3>
+                                <span class="text-center visible-lg visible-md visible-sm">Drag image or click</span>
+                            </div>
+                        </div>
+                        <div id="img-processing" class="col-lg-4 text-danger" style="display: none;">
+                            <h3>Processing, please wait. <i class="fa fa-spinner fa-spin fa-fw"></i></h3>
+                        </div>
+                        <div class="col-lg-10 dz-previews no-padding"></div>
+                    </div>
+                    <!-- / DROPZONE -->
+
+                </div>
+
+                <!-- STATUS MESSAGES -->
+                <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+                    <div id="img-upload-error" class="alert alert-danger" style="display:none">
+                        Upload error, try again later.
+                    </div>
+                </div>
+                <!-- STATUS MESSAGES -->
+
+                <div class="col-lg-10 col-lg-offset-2 col-sm-12">
+                    <p>Upload up to 4 images with dimensions less than 10000x10000.<br />Images will be resized and compressed before they are saved.</p>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Phone Number</span>
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Optional" data-th-name="phoneNumber" data-th-value="${ad?.phoneNumber}"
+                               data-fv-regexp="true" data-fv-regexp-regexp="^[0-9\s\-()+\.]*$" data-fv-regexp-message="Phone Number is invalid" />
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Category</span>
+                    </div>
+                    <div class="col-lg-4 category-dropdown">
+                        <a href="#" class="form-control dropdown-toggle no-decoration" data-toggle="dropdown" data-fv-notempty="true" data-fv-notempty-message="Category is required">
+                            <span id="category" data-th-text="${ad} ? ${ad.category.name} + ' ' : 'Select a Category  '">Select a Category </span><span class="caret right"></span>
+                        </a>
+                        <!-- CATEGORY-MENU -->
+                        <ul class="dropdown-menu">
+                            <li data-th-each="this : ${categories}"><a href="#" class="category" data-th-attr="data-category-code=${this.code}" data-th-text="${this.name}">Category</a></li>
+                        </ul>
+                        <!-- / CATEGORY-MENU -->
+                        <input id="category-input" type="text" class="fv-hide-input" title="" name="categoryCode" data-th-value="${ad} ? ${ad.category.code}" autocomplete="false"
+                               data-fv-notempty="true" data-fv-notempty-message="Category is required" />
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Location</span>
+                    </div>
+                    <div class="col-lg-4 data-dropdown" data-th-if="${(ad != null && ad.location != null) || (userLocation != null && areas != null && areas.size() > 0)}">
+                        <a href="#" class="form-control dropdown-toggle no-decoration" data-toggle="dropdown">
+                            <span id="location" data-th-text="${userLocation.getDisplayName()}"></span> <span class="caret right" data-th-if="${areas != null && areas.size() > 0}"></span>
+                        </a>
+                        <!-- LOCATION-MENU -->
+                        <ul class="dropdown-menu" data-th-if="${areas != null && areas.size() > 0}">
+                            <li data-th-each="area : ${areas}"><a href="#" class="location" data-th-attr="data-location-code=${area.code}" data-th-text="${area.getDisplayName()}"></a></li>
+                        </ul>
+                        <!-- / LOCATION-MENU -->
+                        <input id="location-input" type="text" class="fv-hide-input" title="" name="locationCode" data-th-value="${userLocation.code}" autocomplete="false"
+                               data-fv-notempty="true" data-fv-notempty-message="Location is required" />
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Zip/Postal Code" name="postalCode" autocomplete="false"
+                               data-fv-notempty="true" data-fv-notempty-message="Zip/Postal Code is required and cannot be empty"
+                               data-fv-regexp="true" data-fv-regexp-regexp="^[0-9]{5}$|^[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]$" data-fv-regexp-message="Invalid Zip/Postal Code"/>
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2 fill-height">
+                        <span class="">Options</span>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="checkbox">
+                            <input type="checkbox" id="willDeliver" name="willDeliver" data-th-value="${ad == null ? '0' : (ad.willDeliver == true ? '1' : '0')}">
+                            <label for="willDeliver"> Will Deliver</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATUS MESSAGES -->
+                <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+                    <div id="create-ad-error" class="alert alert-danger" style="display:none">
+                        <a href="#" class="close" aria-label="close">&times;</a> An error occured.
+                    </div>
+                </div>
+                <!-- STATUS MESSAGES -->
+
+                <div class="col-lg-12 form-group text-center">
+                    <button type="submit" class="btn btn-primary btn-submit" data-loading-text="&lt;i class='fa fa-spinner fa-spin'&gt;&lt;/i&gt; Saving..."><span data-th-text="${ad} ? ' Save Ad' : ' Create Ad'">Create Ad</span></button>
+                </div>
+            </form>
+        </div>
+        <!-- / CREATE AD FORM -->
+
+    </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div data-th-replace="fragments/login-modal :: login-modal"></div>
+<!-- / LOGIN MODAL -->
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<script src="../static/js/plugins/formvalidation/formValidation.min.js" data-th-src="@{/js/plugins/formvalidation/formValidation.min.js}"></script>
+<script src="../static/js/plugins/formvalidation/framework/bootstrap.min.js" data-th-src="@{/js/plugins/formvalidation/framework/bootstrap.min.js}"></script>
+<script src="../static/js/plugins/dropzone/dropzone.min.js" data-th-src="@{/js/plugins/dropzone/dropzone.min.js}"></script>
+<script src="../static/js/plugins/exif.js/exif.min.js" data-th-src="@{/js/plugins/exif.js/exif.min.js}"></script>
+<script src="../static/js/plugins/jquery.rotate/jQueryRotate.min.js" data-th-src="@{/js/plugins/jquery.rotate/jQueryRotate.min.js}"></script>
+<script src="../static/js/plugins/bootbox/bootbox.min.js" data-th-src="@{/js/plugins/bootbox/bootbox.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script data-th-inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+        var ad = $('#ad');
+        var adId = ad.data('ad-id') ? ad.data("ad-id") : null;
+        var adToken = ad.data('ad-token') ? ad.data("ad-token") : null;
+        var processedImages = [], removeImages = [];
+
+        function saveAd() {
+            var formData = new FormData($('#create-ad-form')[0]);
+            $.each(processedImages, function(k, v) {
+                formData.append('files['+ k +']', v);
+            });
+            if (adId != null) {
+                formData.append('id', adId);
+                formData.append('removeImages', removeImages);
+            }
+            if (adToken != null) {
+                formData.append('token', adToken);
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/save-ad',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.status == "success") {
+                        window.location.href = "/message/ad-saved";
+                    } else {
+                        $('#create-ad-error').show();
+                    }
+                }
+            }).fail(function() {
+                $('#create-ad-error').fadeIn();
+            }).always(function() {
+                $('.btn-submit').button('reset');
+            });
+        }
+
+        // Ajax login
+        $('#email').focusout(function() {
+            $.post('/check-user', {email: $(this).val().trim()}, function(response) {
+                if (response.status == "success") {
+                    $('#login-modal').modal('toggle');
+                }
+            });
+        });
+
+        // Click handlers
+        $('.category-dropdown .category').click(function(e) {
+            e.preventDefault();
+            $('#category').text($(this).text() + ' ');
+            $('#category-input').val($(this).data("category-code"));
+            $('#create-ad-form').formValidation('revalidateField', 'categoryCode');
+        });
+        $('.data-dropdown .location').click(function(e) {
+            e.preventDefault();
+            $('#location').text($(this).text());
+            $('#location-input').val($(this).data("location-code"));
+            $('#create-ad-form').formValidation('revalidateField', 'locationCode');
+        });
+        $('#btn-expire-ad').click(function(e) {
+            e.preventDefault();
+            bootbox.confirm("This ad will be marked as expired, making it no longer available to view/edit.  Are you sure", function(result) {
+                if (result) {
+                    $.post('/expire-ad', {id: adId}, function(response) {
+                        if (response.status == "success") {
+                            window.location.href = "/message/ad-expired";
+                        }
+                    }).fail(function() {
+                        $('#create-ad-error').fadeIn();
+                    });
+                }
+            });
+        });
+        $('#btn-login').click(function(e) {
+            e.preventDefault();
+            ajaxLogin(function() {
+                location.reload();
+            });
+        });
+
+        // Create/Edit Ad Form
+        $('#create-ad-form').formValidation().on('success.form.fv', function(e) {
+            e.preventDefault();
+            $('.btn-submit').button('loading');
+            $('.alert').hide();
+            saveAd();
+        });
+
+        var MAX_IMAGE_WIDTH = 10000;
+        var MAX_IMAGE_HEIGHT = 10000;
+        var COMPRESSED_WIDTH = 800;
+        var COMPRESSED_HEIGHT = 600;
+        Dropzone.options.createAdForm = {
+            autoProcessQueue: false,
+            acceptedFiles: "image/*",
+            maxFilesize: 100,
+            maxFiles: 4,
+            maxThumbnailFilesize: 30,
+            addRemoveLinks: true,
+            uploadMultiple: true,
+            previewsContainer: ".dz-previews",
+            clickable:'.dz-message .tile',
+
+            init : function() {
+                var canvas = document.createElement("canvas");
+                var ctx = canvas.getContext("2d");
+
+                this.on('addedfile', function(file) {
+                    if (file.saved === "undefined") {
+                        file.saved = false;
+                    }
+
+                    $('#img-upload-error').hide();
+                    $('#img-processing').show();
+
+                    if (!file.saved) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var image = new Image();
+                            image.onload = function() {
+                                var dataURL;
+                                var imageWidth = this.width, imageHeight = this.height;
+                                if (imageWidth > MAX_IMAGE_WIDTH || imageHeight > MAX_IMAGE_HEIGHT) {
+                                    return false;
+                                }
+
+                                function drawImage(degrees, flip) {
+                                    if (degrees === undefined && flip === undefined) {
+                                        canvas.width = imageWidth;
+                                        canvas.height = imageHeight;
+                                        ctx.drawImage(image, 0, 0, imageWidth, imageHeight);
+                                        return;
+                                    }
+                                    if (degrees == 90 || degrees == 270) {
+                                        canvas.width = imageHeight;
+                                        canvas.height = imageWidth;
+                                    } else {
+                                        canvas.width = imageWidth;
+                                        canvas.height = imageHeight;
+                                    }
+                                    ctx.clearRect(0,0,canvas.width,canvas.height);
+                                    ctx.save();
+                                    if (flip == "h") {
+                                        ctx.scale(-1, 1)
+                                    } else if (flip == "v") {
+                                        ctx.scale(1, -1)
+                                    }
+                                    ctx.translate(canvas.width/2, canvas.height/2);
+                                    ctx.rotate(degrees*Math.PI/180);
+                                    ctx.drawImage(image, imageWidth/2, imageHeight/2, -imageWidth, -imageHeight);
+                                    ctx.restore();
+                                    $('img[data-dz-thumbnail]:last').rotate(degrees);
+                                }
+
+                                function queueImage() {
+                                    var blob = atob(dataURL.split(',')[1]);
+                                    var array = [];
+                                    for(var k = 0; k < blob.length; k++) {
+                                        array.push(blob.charCodeAt(k));
+                                    }
+                                    var data = new Blob([new Uint8Array(array)], {type: file.type});
+                                    processedImages.push(data);
+                                }
+
+                                var ratio_w = 1, ratio_h = 1;
+                                if(imageWidth > COMPRESSED_WIDTH) {
+                                    ratio_w = COMPRESSED_WIDTH / imageWidth;
+                                }
+                                if(imageHeight > COMPRESSED_HEIGHT) {
+                                    ratio_h = COMPRESSED_HEIGHT / imageHeight;
+                                }
+                                var ratio = Math.min(ratio_w, ratio_h);
+                                imageWidth = Math.floor(imageWidth * ratio);
+                                imageHeight = Math.floor(imageHeight * ratio);
+
+                                if (file.type.match(/image\/jpeg/)) {
+                                    EXIF.getData(file, function() {
+                                        var orientation = EXIF.getTag(this, "Orientation");
+                                        switch (orientation) {
+                                            case 1: drawImage(); break;
+                                            case 2: drawImage(0, "h"); break;
+                                            case 3: drawImage(180); break;
+                                            case 4: drawImage(0, "v"); break;
+                                            case 5: drawImage(270, "h"); break;
+                                            case 6: drawImage(90); break;
+                                            case 7: drawImage(90, "h"); break;
+                                            case 8: drawImage(270); break;
+                                            default: drawImage();
+                                        }
+                                        dataURL = canvas.toDataURL(file.type, 0.5);
+                                        queueImage();
+                                    });
+                                } else {
+                                    drawImage();
+                                    dataURL = canvas.toDataURL(file.type);
+                                    queueImage();
+                                }
+                            };
+                            image.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        processedImages.push(file);
+                    }
+                });
+                this.on('removedfile', function(file) {
+                    if (typeof file.saved !== "undefined" || file.saved == true) {
+                        removeImages.push(file.name);
+                    }
+                    processedImages.pop();
+                });
+                this.on("thumbnail", function(file) {
+                    if (!file.saved) {
+                        if (file.width > MAX_IMAGE_WIDTH || file.height > MAX_IMAGE_HEIGHT) {
+                            file.rejectDimensions()
+                        } else {
+                            if (file.acceptDimensions)
+                                file.acceptDimensions();
+                        }
+                    }
+                    $('#img-processing').hide();
+                });
+                this.on("error", function(file, response) {
+                    var imgUploadError = $('#img-upload-error');
+                    imgUploadError.text(response);
+                    imgUploadError.show();
+                    this.removeFile(file);
+                });
+                this.on("complete", function() {
+                    $('#img-processing').hide();
+                });
+
+                // Load ad images
+                if (adId != null) {
+                    var imgCount = [[${ad != null ? ad.images.size() : 0}]];
+                    if (imgCount > 0) {
+                        var mock0 = {
+                            name: [[${ad != null && ad.images.size() > 0 ? ad.images[0].filename : "0"}]],
+                            size: [[${ad != null && ad.images.size() > 0 ? ad.images[0].size : 0}]],
+                            type: [[${ad != null && ad.images.size() > 0 ? ad.images[0].contentType : ""}]],
+                            accepted: true, saved: true};
+                        this.emit('addedfile', mock0);
+                        this.createThumbnailFromUrl(mock0, [[${ad != null && ad.images.size() > 0 ? adImageUrl + ad.images[0].filename : "/images/ad_placeholder.png"}]], null, "Anonymous");
+                        this.emit('complete', mock0);
+                        this.files.push(mock0);
+                    }
+                    if (imgCount > 1) {
+                        var mock1 = {
+                            name: [[${ad != null && ad.images.size() > 1 ? ad.images[1].filename : "0"}]],
+                            size: [[${ad != null && ad.images.size() > 1 ? ad.images[1].size : 0}]],
+                            type: [[${ad != null && ad.images.size() > 1 ? ad.images[1].contentType : ""}]],
+                            accepted: true, saved: true};
+                        this.emit('addedfile', mock1);
+                        this.createThumbnailFromUrl(mock1, [[${ad != null && ad.images.size() > 1 ? adImageUrl + ad.images[1].filename : "/images/ad_placeholder.png"}]], null, "Anonymous");
+                        this.emit('complete', mock1);
+                        this.files.push(mock1);
+                    }
+                    if (imgCount > 2) {
+                        var mock2 = {
+                            name: [[${ad != null && ad.images.size() > 2 ? ad.images[2].filename : "0"}]],
+                            size: [[${ad != null && ad.images.size() > 2 ? ad.images[2].size : 0}]],
+                            type: [[${ad != null && ad.images.size() > 2 ? ad.images[2].contentType : ""}]],
+                            accepted: true, saved: true};
+                        this.emit('addedfile', mock2);
+                        this.createThumbnailFromUrl(mock2, [[${ad != null && ad.images.size() > 2 ? adImageUrl + ad.images[2].filename : "/images/ad_placeholder.png"}]], null, "Anonymous");
+                        this.emit('complete', mock2);
+                        this.files.push(mock2);
+                    }
+                    if (imgCount > 3) {
+                        var mock3 = {
+                            name: [[${ad != null && ad.images.size() > 3 ? ad.images[3].filename : "0"}]],
+                            size: [[${ad != null && ad.images.size() > 3 ? ad.images[3].size : 0}]],
+                            type: [[${ad != null && ad.images.size() > 3 ? ad.images[3].contentType : ""}]],
+                            accepted: true, saved: true};
+                        this.emit('addedfile', mock3);
+                        this.createThumbnailFromUrl(mock3, [[${ad != null && ad.images.size() > 3 ? adImageUrl + ad.images[3].filename : "/images/ad_placeholder.png"}]], null, "Anonymous");
+                        this.emit('complete', mock3);
+                        this.files.push(mock3);
+                    }
+                }
+            },
+            accept: function(file, done) {
+                file.acceptDimensions = done;
+                file.rejectDimensions = function() { done("File dimensions are too big (" + file.width + "x" + file.height + "). Max dimensions: 3000x3000."); };
+            }
+        };
+    });
+    /*]]>*/
+</script>
+</body>
+</html>

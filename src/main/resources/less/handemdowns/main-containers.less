@@ -1,0 +1,203 @@
+// Page Containers
+.container .row {
+    padding-top: 20px;
+}
+.container-fluid {
+    height: 100%;
+    display: table;
+    width: 100%;
+    padding: 0;
+}
+.row-fluid {
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+// Twitter feed
+.timeline-Footer {
+    display: none;
+}
+
+// Ad Panels
+.data-panel:hover, .data-panel:focus {
+    color: initial;
+    text-decoration: none;
+}
+.data-panel .thumbnail:hover {
+    border: 1px solid @brand-primary;
+}
+.data-panel img {
+    width: auto;
+    height: 120px;
+}
+.data-panel .caption {
+    background: #fbfbfb;
+    padding: 3px;
+}
+.data-panel .caption h4 {
+    font-size: 16px;
+    margin: 5px;
+    height: 40px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 20px; //fallback
+    max-height: 40px; //fallback
+}
+.data-panel .caption p {
+    font-size: 14px;
+    margin: 5px;
+    height: 60px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 20px; //fallback
+    max-height: 60px; //fallback
+}
+
+// Ad Details
+.data-details .nav-tabs a:focus, .data-details .nav-tabs a:active {
+    outline: 0;
+}
+.data-details .well {
+    border-top: 0;
+    background: #fff;
+}
+@media screen and (min-width: 768px) {
+    .data-details .well {
+        min-height: 400px;
+    }
+}
+
+// Ad Options
+.data-options a {
+    color: #333;
+}
+@media screen and (max-width: 768px) {
+    .data-options .row .col-xs-6 {
+        margin: 20px 0;
+        padding: 0;
+    }
+}
+
+// My Ads
+.myads-well {
+    border-top: 0;
+    background: #fff;
+}
+@media screen and (min-width: 768px) {
+    .myads-well {
+        min-height: 400px;
+    }
+}
+.myads-thumb img {
+    width: auto;
+    height: 120px;
+}
+.myads-caption h4 {
+    font-size: 16px;
+    margin: 5px;
+    height: 40px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 20px; //fallback
+    max-height: 40px; //fallback
+}
+.myads-caption p {
+    font-size: 14px;
+    margin: 5px;
+    height: 60px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 20px; //fallback
+    max-height: 60px; //fallback
+}
+.dataTables_wrapper .row {
+    padding-top: 0;
+}
+
+// Login Form
+.login-form {
+    max-width: 350px;
+    padding: 10px;
+}
+.login-form .panel {
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+// Refine Search Sidebar
+.list-group-submenu {
+    margin-left:20px;
+}
+.list-group-item.active.area {
+    color: #555;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}
+.list-group-item.area:first-child, .list-group-item.area:last-child {
+    border-radius: 0;
+}
+.panel-cat {
+    border: 0
+}
+.panel-cat > a {
+    background: #f5f5f5
+}
+.panel-cat i.fa-caret-down {
+    margin-left: 10px;
+}
+.panel-cat .list-group-sub > a {
+    padding-left: 25px
+}
+.panel-cat .list-group-sub a:last-child {
+    border-bottom: 0;
+}
+.panel-cat .list-group-sub:last-child a:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+// Policies Sidebar
+.nav-sidebar {
+    width: 100%;
+    padding: 8px 0;
+}
+.nav-sidebar a {
+    color: #2999d3;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+.nav-sidebar a.active, .nav-sidebar a:hover, .nav-sidebar .nav>li>a:hover, .nav-sidebar .nav>li>a:focus {
+    background-color: #ffa500;
+    color: #fff;
+}
+.nav-sidebar .text-overflow a, .nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}

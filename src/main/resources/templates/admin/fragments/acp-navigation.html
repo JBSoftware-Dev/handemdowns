@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../../static/css/handemdowns-admin.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<body>
+<div data-th-fragment="navigation">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../../index.html" data-th-href="@{/}"><img src="../../../static/images/logo.png" data-th-src="@{/images/logo.png}" class="img-responsive logo" alt="Home" width="286" height="61" /></a>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><form class="btn-signout" data-th-action="@{/logout}" method="post"><button type="submit" value="Sign Out"><i class="fa fa-logout fa-fw"></i> Sign Out</button></form></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li><a href="../../admin/acp-home.html" data-th-href="@{/admin/home}"><i class="fa fa-bar-chart fa-fw"></i> ACP</a></li>
+                    <li class="hidden"><a href="../../admin/acp-ads.html" data-th-href="@{/admin/ads}"><i class="fa fa-file-text fa-fw"></i> Ads</a></li>
+                    <li><a href="../../admin/acp-users.html" data-th-href="@{/admin/users}"><i class="fa fa-user fa-fw"></i> Users</a></li>
+                    <li><a href="../../admin/acp-locations.html" data-th-href="@{/admin/locations}"><i class="fa fa-globe fa-fw"></i> Locations</a></li>
+                    <li><a href="../../admin/acp-mail.html" data-th-href="@{/admin/mail}"><i class="fa fa-envelope fa-fw"></i> Mail</a></li>
+                    <li><a href="../../admin/acp-log.html" data-th-href="@{/admin/server-log}"><i class="fa fa-history fa-fw"></i> Server Log</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../../static/js/library/jquery-2.2.4.min.js"></script>
+<script src="../../../static/js/bootstrap/bootstrap.min.js"></script>
+<script src="../../../static/js/handemdowns-admin.min.js"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Contact Us')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="help/fragments/header :: header('contact-us')"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container main-container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="title">Contact Us</h1>
+        </div>
+
+        <!-- CONTACT US FORM -->
+        <div class="col-lg-12">
+            <form id="contact-us-form" class="form-horizontal" action="#" data-th-action="@{/contact-us}" data-th-object="${contactUsForm}" method="post"
+                  data-fv-addons="reCaptcha2" data-fv-addons-recaptcha2-sitekey="6LcS_QoUAAAAAE6h7mzI3jiEx9HTOm9N5jHWE09x"
+                  data-fv-addons-recaptcha2-element="captcha-container" data-fv-addons-recaptcha2-message="The captcha is not valid"
+                  data-fv-live="disabled">
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Name</span>
+                    </div>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" title="" data-th-name="name"
+                               data-fv-notempty="true" data-fv-notempty-message="Name is required and cannot be empty"
+                               data-fv-stringlength="true" data-fv-stringlength-max="50" data-fv-stringlength-message="Name must be less than 50 characters" />
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Email</span>
+                    </div>
+                    <div class="col-lg-10">
+                        <input id="email" type="email" class="form-control" title="" name="email"
+                               data-fv-notempty="true" data-fv-notempty-message="Email is required and cannot be empty"
+                               data-fv-emailaddress-message="Not a valid email address"
+                               data-fv-stringlength="true" data-fv-stringlength-min="5" data-fv-stringlength-max="50" data-fv-stringlength-message="Email must be 5-50 characters long" />
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div class="col-lg-2">
+                        <span class="">Message</span>
+                    </div>
+                    <div class="col-lg-10">
+                        <textarea rows="5" class="form-control" title="" data-th-name="message"
+                                  data-fv-notempty="true" data-fv-notempty-message="Message is required and cannot be empty"
+                                  data-fv-stringlength="true" data-fv-stringlength-max="5000" data-fv-stringlength-message="Message must be less than 1000 characters"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <div id="captcha-container" class="text-center"></div>
+                </div>
+
+                <!-- STATUS MESSAGES -->
+                <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+                    <div class="alert alert-success" style="display:none">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Thank you for contacting Handemdowns!
+                    </div>
+                    <div class="alert alert-danger hidden">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> please email help@handemdowns.com
+                    </div>
+                </div>
+                <!-- STATUS MESSAGES -->
+
+                <div class="col-lg-12 form-group text-center">
+                    <button type="submit" value="Validate reCAPTCHA" class="btn btn-primary btn-submit" data-loading-text="&lt;i class='fa fa-spinner fa-spin'&gt;&lt;/i&gt; Sending...">Send</button>
+                </div>
+            </form>
+        </div>
+        <!-- / CONTACT US FORM -->
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div data-th-replace="fragments/footer :: footer"></div>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<script src="../../static/js/plugins/formvalidation/formValidation.min.js" data-th-src="@{/js/plugins/formvalidation/formValidation.min.js}"></script>
+<script src="../../static/js/plugins/formvalidation/framework/bootstrap.min.js" data-th-src="@{/js/plugins/formvalidation/framework/bootstrap.min.js}"></script>
+<script src="../../static/js/plugins/formvalidation/addons/reCaptcha2.min.js" data-th-src="@{/js/plugins/formvalidation/addons/reCaptcha2.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script>
+    $(document).ready(function() {
+        $('#contact-us-form').formValidation().on('success.form.fv', function(e) {
+            e.preventDefault();
+            $('.btn-submit').button('loading');
+            $('.alert').hide();
+
+            var $form = $(e.target);
+            $.post($form.attr('action'), $form.serialize(), function(response) {
+                if (response.status == "success") {
+                    $('#contact-us-form').data('formValidation').resetForm(true);
+                    FormValidation.AddOn.reCaptcha2.reset('captcha-container');
+                    $('.alert-success').fadeIn();
+                }
+            }).fail(function() {
+                $('.alert-danger').fadeIn();
+            }).always(function() {
+                $('.btn-submit').button('reset');
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>https://www.handemdowns.com/</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/login</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/register</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/forgot</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/create-ad</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/category/ALL</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/locations</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/help</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/about-us</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/contact-us</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/policies/terms-of-use</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/policies/privacy-policy</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/policies/cookies-policy</loc>
+</url>
+<url>
+  <loc>https://www.handemdowns.com/policies/anti-spam-policy</loc>
+</url>
+</urlset>

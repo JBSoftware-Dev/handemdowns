@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head data-th-replace="fragments/head :: head('Category Ads')">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<!-- PRELOADER -->
+<div data-th-replace="fragments/preloader :: preloader"></div>
+<!-- / PRELOADER -->
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT9PGN2"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<div data-th-replace="fragments/header :: header"></div>
+<!-- / HEADER -->
+
+<!-- SOCIAL ICONS -->
+<div data-th-replace="fragments/social-icons :: social-icons"></div>
+<!-- / SOCIAL ICONS -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="title">Categories</h1>
+        </div>
+        <div class="col-lg-4 category-link text-center active">
+            <a href="#" data-th-href="@{/category/ALL}">All</a>
+        </div>
+        <div class="col-lg-4 category-link text-center" data-th-each="category : ${categories}">
+            <a href="#" data-th-href="@{/category/__${category.code}__}"  data-th-text="${category.name}"></a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="title text-center" data-th-if="${ads.size() == 0}">There are no ads in your area for <span data-th-if="${category}" data-th-text="${category.name}"></span>.</h1>
+            <h1 class="title" data-th-unless="${ads.size() == 0}">Ads near you <span data-th-if="${category}" data-th-text="${'in ' + category.name}"></span></h1>
+        </div>
+
+        <!-- NEARBY ADS -->
+        <div id="category-nearby-data">
+            <div data-th-replace="fragments/ads :: ad-panels"></div>
+        </div>
+        <!-- / NEARBY ADS -->
+
+        <div data-th-if="${hasMore}" class="col-lg-12 form-group text-center">
+            <h4 class="text-center data-end invisible">No more data!</h4>
+            <button id="load-data" class="btn btn-primary" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading...">Load More</button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer data-th-replace="fragments/footer :: footer"></footer>
+<!-- / FOOTER -->
+
+<a href="#" class="back-top text-center" onclick="$('body,html').animate({scrollTop:0},500); return false"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../static/js/library/jquery-2.2.4.min.js" data-th-src="@{/js/library/jquery-2.2.4.min.js}"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js" data-th-src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<script src="../static/js/handemdowns.min.js" data-th-src="@{/js/handemdowns.min.js}"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+<!-- PAGE JAVASCRIPT -->
+<script src="../static/js/plugins/social-share-kit/social-share-kit.min.js" data-th-src="@{/js/plugins/social-share-kit/social-share-kit.min.js}"></script>
+<!-- / PAGE JAVASCRIPT -->
+
+<script>
+    $(document).ready(function() {
+        // Load backend data
+        var currentPage = 1;
+        var hasData = true;
+        function loadData() {
+            $.get('/data/nearby-ads', {page: currentPage}, function(data) {
+                if (data === undefined) {
+                    hasData = false;
+                } else {
+                    $('#category-nearby-data').append(data);
+                    currentPage++;
+                }
+            }).always(function() {
+                $('#load-data').button('reset');
+            });
+        }
+
+        // Click handlers
+        $('#load-data').click(function(e) {
+            e.preventDefault();
+            if (!hasData) return;
+
+            $('#load-data').button('loading');
+            $('.data-end').addClass('invisible');
+            loadData();
+        });
+    });
+</script>
+</body>
+</html>

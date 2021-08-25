@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handemdowns</title>
+    <link rel="shortcut icon" href="../../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../../static/images/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" href="../../../static/css/font-awesome.min.css" media="screen" />
+    <link rel="stylesheet" href="../../../static/css/plugins.min.css" media="screen" />
+    <link rel="stylesheet" href="../../../static/css/handemdowns.min.css" media="screen" />
+</head>
+<!-- HEAD -->
+
+<body>
+<div class="col-lg-3" data-th-fragment="policies-menu(menu)">
+    <nav class="nav-sidebar">
+        <ul class="nav">
+            <li><a href="../terms-of-use.html" data-th-href="@{/policies/terms-of-use}" data-th-class="${menu == 'Terms of Use'} ? active : none">Terms of Use</a></li>
+            <li><a href="../privacy-policy.html" data-th-href="@{/policies/privacy-policy}" data-th-class="${menu == 'Privacy Policy'} ? active : none">Privacy Policy</a></li>
+            <li><a href="../cookies-policy.html" data-th-href="@{/policies/cookies-policy}" data-th-class="${menu == 'Cookies Policy'} ? active : none">Cookies Policy</a></li>
+            <li><a href="../anti-spam-policy.html" data-th-href="@{/policies/anti-spam-policy}" data-th-class="${menu == 'Anti-Spam Policy'} ? active : none">Anti-Spam Policy</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- COMMON JAVASCRIPT -->
+<script src="../../../static/js/library/jquery-2.2.4.min.js"></script>
+<script src="../../../static/js/bootstrap/bootstrap.min.js"></script>
+<script src="../../../static/js/handemdowns.min.js"></script>
+<!-- / COMMON JAVASCRIPT -->
+
+</body>
+</html>
